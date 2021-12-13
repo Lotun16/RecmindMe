@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>recMind Me!</title>
-</head>
+<%- include('./partials/head.ejs') %>
 <body>
-    
+    <div class="gems content">
+        <h2>All Gems</h2>
+        <% if(gems.length > 0) { %>
+            <% gems.forEach((gem) => { %>
+                <a class="single" href="/gems/<%= gem._id %>">
+                    <h3 class="title"><%= gem.title %></h3>
+                    <p class="link"><%= gem.link %></p>
+                    <p class="desc"><%= gem.desc %></p>
+                </a>
+            <% }) %>
+            <% } else { %>
+                <p>There are no blogs to display...</p>
+            <% } %>
+    </div>
+    <div>
+        <a href="/add-gem">LINK TO ADD GEM</a>
+        <a href="/about-me">LINK TO ABOUT PAGE</a>
+    </div>
+    <!-- <%- include('./partials/footer.ejs') %> -->
 </body>
 </html>

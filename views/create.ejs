@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+<body>
+    <div class="create-gem content">
+        <a href="/" class=""></a>
+        <form action="/gems" method="POST">
+            <label for="title">Gem Title:</label>
+            <input type="text" id="title" name="title" required>
+            <label for="link">Link:</label>
+            <input type="text" id="link" name="link" required>
+            <label for="desc">Description:</label>
+            <textarea id="desc"  name="desc" required></textarea>
+            <button>Submit</button>
+        </form>
+    </div>
+    <!-- <%- include('./partials/footer.ejs') %> -->
+</body>
+</html>

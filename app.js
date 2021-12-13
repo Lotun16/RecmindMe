@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const gemRoutes = require('./routes/gemRoutes');
 // console.log('hi');
 
 //express app
@@ -24,9 +25,32 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 //middleware
+app.use(express.urlencoded({ extended: true /* not necessary */ }));
 app.use(morgan('dev'));
 
 //routes
 app.get('/', (req, res) => {
-    res.render('index', { title: 'Home'});
+    const gems = [
+        {title: 'Attack on Titan', desc: 'attackontitan', link: 'website'},
+        {title: 'God of War', desc: 'godofwar', link: 'website'},
+        {title: 'Jojos Bizarre Adventure', desc: 'jojogaygay', link: 'website'},
+        {title: 'Arcane', desc: 'leagueofjinxissosexy', link: 'website'},
+        {title: 'Uncharted', desc: 'justwatchthedamnmovie', link: 'website'},
+        
+    ]
+    // res.render('index', { title: 'Home', gems});
+    res.redirect('/gems');
+});
+
+
+app.get('/about-me', (req, res) => {
+    res.render('about', {title: 'About Me'});
+});
+
+//gem routes
+app.use('/gems', gemRoutes);
+
+//404 page
+app.use((req, res) => {
+    res.status(404).render('404', {title: '404'});
 });
